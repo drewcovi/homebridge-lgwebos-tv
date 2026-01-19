@@ -309,7 +309,7 @@ class LgWebOsSocket extends EventEmitter {
 
             //Socket
             const url = this.sslWebSocket ? ApiUrls.WssUrl.replace('lgwebostv', this.host) : ApiUrls.WsUrl.replace('lgwebostv', this.host);
-            const options = this.sslWebSocket ? { rejectUnauthorized: false } : {};
+            const options = this.sslWebSocket ? { rejectUnauthorized: false, handshakeTimeout: 5000} : { handshakeTimeout: 5000 };
             const socket = new WebSocket(url, options)
                 .on('error', (error) => {
                     if (this.logDebug) this.emit('debug', `Socket error: ${error}`);
@@ -327,6 +327,8 @@ class LgWebOsSocket extends EventEmitter {
                     this.socket = socket;
                     if (!this.socketConnected) this.emit('success', `Socket Connect Success`);
                     this.socketConnected = true;
+                    // set power on here
+                    this.emit('powerState', true, 'Active');
 
                     // Register to TV
                     await this.registerToTv();

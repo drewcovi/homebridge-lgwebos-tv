@@ -1661,7 +1661,7 @@
                 }
               ]
             },
-            "heartBeatInterval": {
+            "heartbeatInterval": {
               "title": "Heart beat interval (sec)",
               "type": "number",
               "minimum": 1,
@@ -2052,7 +2052,7 @@
                     "devices[].sslWebSocket",
                     "devices[].disableTvService",
                     "devices[].infoButtonCommand",
-                    "devices[].heartBeatInterval"
+                    "devices[].heartbeatInterval"
                   ]
                 },
                 {
